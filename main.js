@@ -10,6 +10,7 @@ let title=document.getElementById('prti');
 let tbody=document.getElementById('tbody');
 let updatesearch=document.getElementById('Update_By_Titl');
 let tmp;
+let modalBody=document.querySelector('.modal-body');
 let mood='create';
 
 function getTotale(){
@@ -28,16 +29,30 @@ if(localStorage.product !=null){
 }else{
      dataOfP=[];
 }
+
+function valid_name(val){
+     let NameRegex=/[a-zA-Z][a-zA-Z 0-9]{3,}$/gm
+     return NameRegex.test(val);
+}
+
+function Valid_TotalPrice(val){
+     return Number(val)>0;
+}
+
+function Valid_Count(val){
+     return Number(val)>0;
+}
+
 submit.onclick=function(){
      let newProduct = {
           title:title.value,
           price:price.value,
-          tax:tax.value,
-          ads:ads.value,
-          discount:discount.value,
+          tax:tax.value?tax.value:'0',
+          ads:ads.value?ads.value:'0',
+          discount:discount.value?discount.value:'0',
           totale:totale.innerHTML,
           count:count.value,
-          category:category.value
+          category:category.value?category.value:"NON"
      }
      //cleardata
      function cleardata(){
@@ -50,31 +65,48 @@ submit.onclick=function(){
           count.value = '';
           category.value = '';
      }
-     cleardata();
-     if(mood=='create'){
-          if(+newProduct.count > 1){
-               for (let i = 0; i < +newProduct.count; i++) {
+
+     if(!valid_name(newProduct.title)){
+          submit.setAttribute('data-bs-toggle','modal')
+          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.innerHTML='Product\'s Name Must Be Characters or Numbers and Greater Than 3 Characters'
+     }else if(!Valid_TotalPrice(newProduct.totale) ||!Valid_TotalPrice(newProduct.price) ){
+          submit.setAttribute('data-bs-toggle','modal')
+          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.innerHTML='Price Must Be Grater Than 0'
+     }else if(!Valid_Count(newProduct.count)){
+          submit.setAttribute('data-bs-toggle','modal')
+          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.innerHTML='Count Must Be Grater Than 0'
+     }else{
+          submit.removeAttribute('data-bs-toggle')
+          submit.removeAttribute('data-bs-target')
+          cleardata();
+          if(mood=='create'){
+               if(+newProduct.count > 1){
+                    for (let i = 0; i < +newProduct.count; i++) {
+                         dataOfP.push(newProduct);
+                    }
+               }else{
                     dataOfP.push(newProduct);
                }
           }else{
-               dataOfP.push(newProduct);
-          }
-     }else{
-          if(mood=='updatebytitle'){
-               for(let i=0 ; i<dataOfP.length ; i++){
-                    if(dataOfP[i].title === document.getElementById('Update_By_Title').value){
-                         dataOfP[i]=newProduct;
+               if(mood=='updatebytitle'){
+                    for(let i=0 ; i<dataOfP.length ; i++){
+                         if(dataOfP[i].title === document.getElementById('Update_By_Title').value){
+                              dataOfP[i]=newProduct;
+                         }
                     }
+                    document.getElementById('Update_By_Title').value='';
+               }else{
+                  dataOfP[tmp]=newProduct;  
                }
-               document.getElementById('Update_By_Title').value='';
-          }else{
-             dataOfP[tmp]=newProduct;  
+               mood='create';
+               submit.innerHTML='create';
+               count.style.display='block';
           }
-          mood='create';
-          submit.innerHTML='create';
-          count.style.display='block';
+          localStorage.setItem('product', JSON.stringify(dataOfP));
      }
-     localStorage.setItem('product', JSON.stringify(dataOfP));
      show_data();
 }
 function show_data(){
