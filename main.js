@@ -88,7 +88,7 @@ submit.onclick=function(){
           
           cleardata();
           if(mood=='create'){
-               modalBody.innerHTML='Product Added Sucssesfully'
+               modalBody.innerHTML='Product Added Successfully'
                if(+newProduct.count > 1){
                     for (let i = 0; i < +newProduct.count; i++) {
                          dataOfP.push(newProduct);
@@ -104,9 +104,9 @@ submit.onclick=function(){
                          }
                     }
                     document.getElementById('Update_By_Title').value='';
-                    modalBody.innerHTML='Products Updated Sucssesfully'
+                    modalBody.innerHTML='Products Updated Successfully'
                }else{
-                    modalBody.innerHTML='Product Updated Sucssesfully'
+                    modalBody.innerHTML='Product Updated Successfully'
                   dataOfP[tmp]=newProduct;  
                }
                mood='create';
