@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Product Management System</title>
+     <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark text-light fs-5">
+     
+     <header>
+          <h1 class="text-center mt-5">
+               Prouducts Management System
+          </h1>
+     </header>
+
+     <div class=" my-3 border-bottom">
+          <div class="container fs-5">
+               <label for="prti" class=" my-2">Name:</label>
+               <input type="text" name="title" class=" form-control my-2" id="prti" placeholder="Title...">
+               <div class="price">
+                    <label for="price" class="my-2">Price:</label>
+                    <input type="number" name="price" onkeyup="getTotale()"  id="price"    class="form-control my-2" placeholder="Price..." min="0">
+                    <label for="price" class="my-2">Taxes:</label>
+                    <input type="number" name="tax"   onkeyup="getTotale()"  id="tax"   class="form-control my-2" placeholder="Taxes..." min="0">
+                    <label for="price" class="my-2">ADS:</label>
+                    <input type="number" name="ads"     onkeyup="getTotale()"   id="ads" class="form-control my-2" placeholder="ADS..." min="0">
+                    <label for="price">Discount:</label>
+                    <input type="number" name="discount" onkeyup="getTotale()"   id="discount" class="form-control my-2" placeholder="Discount..." min="0">
+                    
+               </div>
+               <div class=" d-flex justify-content-between gx-2 flex-wrap my-5">
+                    <input type="number" name="count" class=" form-control w-49" id="count" placeholder="Count..." min="0">
+                    <input type="text" class=" form-control  w-49" name="category" id="category" placeholder="Category...">
+               </div>
+      
+               <div class=" my-3 fs-4">
+                    <label for="price">TOTal price:</label>
+                    <span id="smal" class=" rounded-3"></span> 
+               </div>
+     </div>
+          <div class=" text-center w-100 d-flex justify-content-center my-2">
+               <button type="submit" class=" btn btn-danger d-block px-3 fs-5 mb-4 " id="create">create</button>
+          </div>
+   
+         
+     </div>
+     <div class=" container">
+          <h2 class="text-center my-3">Products</h2>
+          <input type="search" class=" form-control" onkeyup="searchindata(this.value)" name="search" id="search" placeholder="Search...">
+          <div class=" d-flex justify-content-center ">
+               <div class=" m-2">
+                    <button type="button"  onclick="searchmood(this.id)" class="btn btn-success" id="btn1">search By title</button>
+               </div>
+               <div class="m-2">
+                    <button type="button"onclick="searchmood(this.id)"  class="btn btn-success" id="btn2">search By category</button>
+               </div>
+          </div>
+          <div class="container d-flex justify-content-center flex-wrap">
+               <input type="search" class=" form-control mt-4" name="update" id="Update_By_Title" placeholder="Update By Title">
+               <button type="button" class="btn btn-success my-2" onclick="Update_By_Title()" id="Update_By_Titl">Update By Title</button>
+          </div>
+          
+     </div>
+    
+     <div class="output container">
+          <table class=" table text-light table-responsive table-responsive-sm table-responsive-md table-bordered">
+               <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>price</th>
+                    <th>Taxes</th>
+                    <th>Ads</th>
+                    <th>Discount</th>
+                    <th>totale</th>
+                    <th>category</th>
+                    <th>update</th>
+                    <th>delete</th>
+               </tr>
+               <tbody id="tbody">
+               </tbody>
+          </table>
+     </div>
+     <div id="delb" class="d-flex justify-content-center my-3">
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     <script src="main.js"></script>
+</body>
+</html>
