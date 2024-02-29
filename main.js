@@ -52,7 +52,7 @@ submit.onclick=function(){
           discount:discount.value?discount.value:'0',
           totale:totale.innerHTML,
           count:count.value,
-          category:category.value?category.value:"NONE"
+          category:category.value?category.value:"NON"
      }
      //cleardata
      function cleardata(){
@@ -65,22 +65,22 @@ submit.onclick=function(){
           count.value = '';
           category.value = '';
      }
-
      if(!valid_name(newProduct.title)){
-          submit.setAttribute('data-bs-toggle','modal')
-          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.parentElement.style=`
+          background-color:black !important;`;
           modalBody.innerHTML='Product\'s Name Must Be Characters or Numbers and Greater Than 3 Characters'
      }else if(!Valid_TotalPrice(newProduct.totale) ||!Valid_TotalPrice(newProduct.price) ){
-          submit.setAttribute('data-bs-toggle','modal')
-          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.parentElement.style=`
+          background-color:black !important;`;
           modalBody.innerHTML='Price Must Be Grater Than 0'
      }else if(!Valid_Count(newProduct.count)){
-          submit.setAttribute('data-bs-toggle','modal')
-          submit.setAttribute('data-bs-target','#exampleModal')
+          modalBody.parentElement.style=`
+          background-color:black !important;`;
           modalBody.innerHTML='Count Must Be Grater Than 0'
      }else{
-          submit.removeAttribute('data-bs-toggle')
-          submit.removeAttribute('data-bs-target')
+          modalBody.parentElement.style=`
+          background-color:green !important;`;
+          modalBody.innerHTML='Product Added Sucssesfully'
           cleardata();
           if(mood=='create'){
                if(+newProduct.count > 1){
