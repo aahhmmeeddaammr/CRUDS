@@ -52,7 +52,7 @@ submit.onclick=function(){
           discount:discount.value?discount.value:'0',
           totale:totale.innerHTML,
           count:count.value,
-          category:category.value?category.value:"NON"
+          category:category.value?category.value:"NONE"
      }
      //cleardata
      function cleardata(){
