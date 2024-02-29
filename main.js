@@ -11,6 +11,7 @@ let tbody=document.getElementById('tbody');
 let updatesearch=document.getElementById('Update_By_Titl');
 let tmp;
 let modalBody=document.querySelector('.modal-body');
+let modalTitle=document.querySelector('.modal-title');
 let mood='create';
 
 function getTotale(){
@@ -68,18 +69,22 @@ submit.onclick=function(){
      if(!valid_name(newProduct.title)){
           modalBody.parentElement.style=`
           background-color:black !important;`;
+          modalTitle.innerHTML='ERROR❗️❗️❗️'
           modalBody.innerHTML='Product\'s Name Must Be Characters or Numbers and Greater Than 3 Characters'
      }else if(!Valid_TotalPrice(newProduct.totale) ||!Valid_TotalPrice(newProduct.price) ){
           modalBody.parentElement.style=`
           background-color:black !important;`;
+          modalTitle.innerHTML='ERROR❗️❗️❗️'
           modalBody.innerHTML='Price Must Be Grater Than 0'
      }else if(!Valid_Count(newProduct.count)){
           modalBody.parentElement.style=`
           background-color:black !important;`;
+          modalTitle.innerHTML='ERROR❗️❗️❗️'
           modalBody.innerHTML='Count Must Be Grater Than 0'
      }else{
           modalBody.parentElement.style=`
           background-color:green !important;`;
+          modalTitle.innerHTML='success✅✅'
           modalBody.innerHTML='Product Added Sucssesfully'
           cleardata();
           if(mood=='create'){
