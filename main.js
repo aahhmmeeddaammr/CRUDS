@@ -76,7 +76,7 @@ submit.onclick=function(){
           background-color:black !important;`;
           modalTitle.innerHTML='ERROR❗️❗️❗️'
           modalBody.innerHTML='Price Must Be Grater Than 0'
-     }else if(!Valid_Count(newProduct.count)){
+     }else if(!Valid_Count(newProduct.count) && mood=='create'){
           modalBody.parentElement.style=`
           background-color:black !important;`;
           modalTitle.innerHTML='ERROR❗️❗️❗️'
@@ -85,9 +85,10 @@ submit.onclick=function(){
           modalBody.parentElement.style=`
           background-color:green !important;`;
           modalTitle.innerHTML='success✅✅'
-          modalBody.innerHTML='Product Added Successfully'
+          
           cleardata();
           if(mood=='create'){
+               modalBody.innerHTML='Product Added Sucssesfully'
                if(+newProduct.count > 1){
                     for (let i = 0; i < +newProduct.count; i++) {
                          dataOfP.push(newProduct);
@@ -103,7 +104,9 @@ submit.onclick=function(){
                          }
                     }
                     document.getElementById('Update_By_Title').value='';
+                    modalBody.innerHTML='Products Updated Sucssesfully'
                }else{
+                    modalBody.innerHTML='Product Updated Sucssesfully'
                   dataOfP[tmp]=newProduct;  
                }
                mood='create';
