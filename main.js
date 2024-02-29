@@ -85,7 +85,7 @@ submit.onclick=function(){
           modalBody.parentElement.style=`
           background-color:green !important;`;
           modalTitle.innerHTML='success✅✅'
-          modalBody.innerHTML='Product Added Sucssesfully'
+          modalBody.innerHTML='Product Added Successfully'
           cleardata();
           if(mood=='create'){
                if(+newProduct.count > 1){
